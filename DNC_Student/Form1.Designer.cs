@@ -38,6 +38,12 @@
             this.label3 = new System.Windows.Forms.Label();
             this.picSinhVien = new System.Windows.Forms.PictureBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.label4 = new System.Windows.Forms.Label();
+            this.txtSoTinChi = new System.Windows.Forms.TextBox();
+            this.label5 = new System.Windows.Forms.Label();
+            this.txtSoTinChiNo = new System.Windows.Forms.TextBox();
+            this.label6 = new System.Windows.Forms.Label();
+            this.txtTichLuy = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.picSinhVien)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
@@ -61,7 +67,7 @@
             // 
             // txtKetQua
             // 
-            this.txtKetQua.Location = new System.Drawing.Point(12, 355);
+            this.txtKetQua.Location = new System.Drawing.Point(12, 452);
             this.txtKetQua.Multiline = true;
             this.txtKetQua.Name = "txtKetQua";
             this.txtKetQua.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
@@ -87,7 +93,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(221, 156);
+            this.label2.Location = new System.Drawing.Point(218, 141);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(32, 17);
             this.label2.TabIndex = 5;
@@ -95,9 +101,9 @@
             // 
             // txtKey
             // 
-            this.txtKey.Location = new System.Drawing.Point(224, 177);
+            this.txtKey.Location = new System.Drawing.Point(221, 162);
             this.txtKey.Name = "txtKey";
-            this.txtKey.Size = new System.Drawing.Size(270, 22);
+            this.txtKey.Size = new System.Drawing.Size(273, 22);
             this.txtKey.TabIndex = 6;
             // 
             // label3
@@ -128,12 +134,66 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Ảnh sinh viên";
             // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(218, 195);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(101, 17);
+            this.label4.TabIndex = 10;
+            this.label4.Text = "Tổng số tín chỉ";
+            // 
+            // txtSoTinChi
+            // 
+            this.txtSoTinChi.Location = new System.Drawing.Point(221, 215);
+            this.txtSoTinChi.Name = "txtSoTinChi";
+            this.txtSoTinChi.Size = new System.Drawing.Size(273, 22);
+            this.txtSoTinChi.TabIndex = 11;
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(218, 255);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(86, 17);
+            this.label5.TabIndex = 12;
+            this.label5.Text = "Số tín chỉ nợ";
+            // 
+            // txtSoTinChiNo
+            // 
+            this.txtSoTinChiNo.Location = new System.Drawing.Point(221, 275);
+            this.txtSoTinChiNo.Name = "txtSoTinChiNo";
+            this.txtSoTinChiNo.Size = new System.Drawing.Size(273, 22);
+            this.txtSoTinChiNo.TabIndex = 13;
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(218, 310);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(168, 17);
+            this.label6.TabIndex = 14;
+            this.label6.Text = "Trung bình chung tich lũy";
+            // 
+            // txtTichLuy
+            // 
+            this.txtTichLuy.Location = new System.Drawing.Point(221, 330);
+            this.txtTichLuy.Name = "txtTichLuy";
+            this.txtTichLuy.Size = new System.Drawing.Size(273, 22);
+            this.txtTichLuy.TabIndex = 15;
+            // 
             // Form1
             // 
             this.AcceptButton = this.btnTruyCap;
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(502, 494);
+            this.ClientSize = new System.Drawing.Size(902, 591);
+            this.Controls.Add(this.txtTichLuy);
+            this.Controls.Add(this.label6);
+            this.Controls.Add(this.txtSoTinChiNo);
+            this.Controls.Add(this.label5);
+            this.Controls.Add(this.txtSoTinChi);
+            this.Controls.Add(this.label4);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.txtKey);
@@ -165,6 +225,12 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.PictureBox picSinhVien;
         private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.TextBox txtSoTinChi;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.TextBox txtSoTinChiNo;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.TextBox txtTichLuy;
     }
 }
 

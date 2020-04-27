@@ -30,19 +30,42 @@ namespace DNC_Student
             if (txtHoTen.Text == "")
             {
                 MessageBox.Show("Không tìm thấy thông tin sinh viên", "Thông báo");
+                return;
             }
 
-            txtKetQua.Text = responseText;
+            string urlXemDiem = "http://student.nctu.edu.vn/XemDiem.aspx?k=" + txtKey.Text;
+            HttpClient client = new HttpClient();
+            client.DefaultRequestHeaders.Add("user-agent", "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/81.0.4044.122 Safari/537.36");
+            HttpResponseMessage response = await client.GetAsync(urlXemDiem);
+
+            string ketQuaXemDiem= await response.Content.ReadAsStringAsync();
+            txtSoTinChi.Text = GetSoTinChi(ketQuaXemDiem);
+            txtSoTinChiNo.Text = GetSoTinChiNo(ketQuaXemDiem);
+            txtTichLuy.Text = GetTrungBinhTichLuy(ketQuaXemDiem);
+
+            txtKetQua.Text = ketQuaXemDiem;
         }
 
-        void LoadAnhSinhVien()
+        string GetSoTinChi(string input)
         {
-            picSinhVien.Hide();
-            picSinhVien.LoadAsync("http://student.nctu.edu.vn/GetImage.aspx?MSSV=" + txtMSSV.Text);
-            picSinhVien.Show();
+            string regex = @"(?<=lblTongTinChi.+>)\d+";
+            var ketQua = Regex.Match(input, regex).Value;
+            return ketQua;
         }
 
+        string GetSoTinChiNo(string input)
+        {
+            string regex = @"(?<=lblSoTCNo.+>)[%\d. -]+";
+            var ketQua = Regex.Match(input, regex).Value;
+            return ketQua;
+        }
 
+        string GetTrungBinhTichLuy(string input)
+        {
+            string regex = @"(?<=lblTBCTL.+>)[\d. -]+";
+            var ketQua = Regex.Match(input, regex).Value;
+            return ketQua;
+        }
 
         string GetHoTen(string input)
         {
@@ -73,5 +96,13 @@ namespace DNC_Student
             string text = await response.Content.ReadAsStringAsync();
             return text;
         }
+
+
+        void LoadAnhSinhVien()
+        {
+            picSinhVien.LoadAsync("http://student.nctu.edu.vn/GetImage.aspx?MSSV=" + txtMSSV.Text);
+        }
+
+
     }
 }
