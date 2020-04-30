@@ -9,6 +9,14 @@ namespace DNC_Student
 {
     class DNCRegex
     {
+        public static int GetSoTrangHienThi(string input)
+        {
+            string regex = @"(?<=\d+\/)\d+";
+            //var ketQua = Regex.Match(input, regex).Value;
+            //return Convert.ToInt32(ketQua);
+            return Convert.ToInt32( GetSingle(input, regex) );
+        }
+
         public static string GetSoTinChi(string input)
         {
             string regex = @"(?<=lblTongTinChi.+>)\d+";

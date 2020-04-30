@@ -33,8 +33,6 @@
             this.txtKetQua = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.txtHoTen = new System.Windows.Forms.TextBox();
-            this.label2 = new System.Windows.Forms.Label();
-            this.txtKey = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.picSinhVien = new System.Windows.Forms.PictureBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
@@ -54,9 +52,14 @@
             this.label10 = new System.Windows.Forms.Label();
             this.txtMaLop = new System.Windows.Forms.TextBox();
             this.dataGridViewSinhVien = new System.Windows.Forms.DataGridView();
+            this.STT = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.MSSV = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.HoTen = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Key = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.label2 = new System.Windows.Forms.Label();
+            this.txtTenSinhVien = new System.Windows.Forms.TextBox();
+            this.cboTrang = new System.Windows.Forms.ComboBox();
+            this.label11 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.picSinhVien)).BeginInit();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewSinhVien)).BeginInit();
@@ -71,7 +74,7 @@
             // 
             // btnTruyCap
             // 
-            this.btnTruyCap.Location = new System.Drawing.Point(12, 144);
+            this.btnTruyCap.Location = new System.Drawing.Point(12, 195);
             this.btnTruyCap.Name = "btnTruyCap";
             this.btnTruyCap.Size = new System.Drawing.Size(94, 38);
             this.btnTruyCap.TabIndex = 1;
@@ -104,23 +107,6 @@
             this.txtHoTen.ReadOnly = true;
             this.txtHoTen.Size = new System.Drawing.Size(155, 22);
             this.txtHoTen.TabIndex = 4;
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(246, 19);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(32, 17);
-            this.label2.TabIndex = 5;
-            this.label2.Text = "Key";
-            // 
-            // txtKey
-            // 
-            this.txtKey.Location = new System.Drawing.Point(249, 40);
-            this.txtKey.Name = "txtKey";
-            this.txtKey.ReadOnly = true;
-            this.txtKey.Size = new System.Drawing.Size(155, 22);
-            this.txtKey.TabIndex = 6;
             // 
             // label3
             // 
@@ -285,19 +271,27 @@
             this.dataGridViewSinhVien.AllowUserToDeleteRows = false;
             this.dataGridViewSinhVien.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridViewSinhVien.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.STT,
             this.MSSV,
             this.HoTen,
             this.Key});
-            this.dataGridViewSinhVien.Location = new System.Drawing.Point(13, 278);
+            this.dataGridViewSinhVien.Location = new System.Drawing.Point(12, 269);
             this.dataGridViewSinhVien.MultiSelect = false;
             this.dataGridViewSinhVien.Name = "dataGridViewSinhVien";
             this.dataGridViewSinhVien.ReadOnly = true;
             this.dataGridViewSinhVien.RowTemplate.Height = 24;
             this.dataGridViewSinhVien.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridViewSinhVien.Size = new System.Drawing.Size(777, 301);
+            this.dataGridViewSinhVien.Size = new System.Drawing.Size(614, 310);
             this.dataGridViewSinhVien.TabIndex = 25;
             this.dataGridViewSinhVien.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewSinhVien_CellClick);
             this.dataGridViewSinhVien.RowHeaderMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dataGridViewSinhVien_RowHeaderMouseClick);
+            // 
+            // STT
+            // 
+            this.STT.HeaderText = "STT";
+            this.STT.Name = "STT";
+            this.STT.ReadOnly = true;
+            this.STT.Width = 50;
             // 
             // MSSV
             // 
@@ -319,12 +313,50 @@
             this.Key.ReadOnly = true;
             this.Key.Width = 150;
             // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(9, 124);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(93, 17);
+            this.label2.TabIndex = 26;
+            this.label2.Text = "Tên sinh viên";
+            // 
+            // txtTenSinhVien
+            // 
+            this.txtTenSinhVien.Location = new System.Drawing.Point(12, 144);
+            this.txtTenSinhVien.Name = "txtTenSinhVien";
+            this.txtTenSinhVien.Size = new System.Drawing.Size(177, 22);
+            this.txtTenSinhVien.TabIndex = 27;
+            // 
+            // cboTrang
+            // 
+            this.cboTrang.FormattingEnabled = true;
+            this.cboTrang.Location = new System.Drawing.Point(539, 239);
+            this.cboTrang.Name = "cboTrang";
+            this.cboTrang.Size = new System.Drawing.Size(87, 24);
+            this.cboTrang.TabIndex = 28;
+            this.cboTrang.SelectedIndexChanged += new System.EventHandler(this.cboTrang_SelectedIndexChanged);
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Location = new System.Drawing.Point(437, 242);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(96, 17);
+            this.label11.TabIndex = 29;
+            this.label11.Text = "Trang hiện tại";
+            // 
             // Form1
             // 
             this.AcceptButton = this.btnTruyCap;
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1068, 591);
+            this.Controls.Add(this.label11);
+            this.Controls.Add(this.cboTrang);
+            this.Controls.Add(this.txtTenSinhVien);
+            this.Controls.Add(this.label2);
             this.Controls.Add(this.dataGridViewSinhVien);
             this.Controls.Add(this.txtMaLop);
             this.Controls.Add(this.label10);
@@ -343,8 +375,6 @@
             this.Controls.Add(this.label4);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.label3);
-            this.Controls.Add(this.txtKey);
-            this.Controls.Add(this.label2);
             this.Controls.Add(this.txtHoTen);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.txtKetQua);
@@ -368,8 +398,6 @@
         private System.Windows.Forms.TextBox txtKetQua;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox txtHoTen;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.TextBox txtKey;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.PictureBox picSinhVien;
         private System.Windows.Forms.GroupBox groupBox1;
@@ -389,9 +417,14 @@
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.TextBox txtMaLop;
         private System.Windows.Forms.DataGridView dataGridViewSinhVien;
+        private System.Windows.Forms.DataGridViewTextBoxColumn STT;
         private System.Windows.Forms.DataGridViewTextBoxColumn MSSV;
         private System.Windows.Forms.DataGridViewTextBoxColumn HoTen;
         private System.Windows.Forms.DataGridViewTextBoxColumn Key;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.TextBox txtTenSinhVien;
+        private System.Windows.Forms.ComboBox cboTrang;
+        private System.Windows.Forms.Label label11;
     }
 }
 
