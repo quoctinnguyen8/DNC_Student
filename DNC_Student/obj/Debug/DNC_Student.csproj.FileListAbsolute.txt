@@ -1,7 +1,6 @@
 E:\C# Code\DNC_Student\DNC_Student\bin\Debug\DNC_Student.exe.config
 E:\C# Code\DNC_Student\DNC_Student\bin\Debug\DNC_Student.exe
 E:\C# Code\DNC_Student\DNC_Student\bin\Debug\DNC_Student.pdb
-E:\C# Code\DNC_Student\DNC_Student\obj\Debug\DNC_Student.csprojResolveAssemblyReference.cache
 E:\C# Code\DNC_Student\DNC_Student\obj\Debug\DNC_Student.Form1.resources
 E:\C# Code\DNC_Student\DNC_Student\obj\Debug\DNC_Student.Properties.Resources.resources
 E:\C# Code\DNC_Student\DNC_Student\obj\Debug\DNC_Student.csproj.GenerateResource.Cache

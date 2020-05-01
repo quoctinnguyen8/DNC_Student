@@ -12,9 +12,8 @@ namespace DNC_Student
         public static int GetSoTrangHienThi(string input)
         {
             string regex = @"(?<=\d+\/)\d+";
-            //var ketQua = Regex.Match(input, regex).Value;
-            //return Convert.ToInt32(ketQua);
-            return Convert.ToInt32( GetSingle(input, regex) );
+            string value = GetSingle(input, regex);
+            return String.IsNullOrWhiteSpace(value) ? 1 : Convert.ToInt32(value);
         }
 
         public static string GetSoTinChi(string input)

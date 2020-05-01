@@ -18,31 +18,127 @@ namespace DNC_Student
     {
         int trangHienTai;
         int trangCuoi;
+        bool isFirstTimes;
+        List<string> listMSSV = new List<string>();
+        List<string> listHoTen = new List<string>();
+        List<string> listKey = new List<string>();
 
         public Form1()
         {
             InitializeComponent();
             trangHienTai = 1;
+            isFirstTimes = false;
         }
 
+        #region Events
         private async void btnTruyCap_Click(object sender, EventArgs e)
         {
-            await TimKiemThongTin();
+            isFirstTimes = true;
+            cboTrang.Items.Clear();
+            if (InputDataIsEmpty() || !await SearchData())
+            {
+                MessageBox.Show("Không tìm thấy thông tin", "Thông báo",
+                                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+            
             for (int i = 1; i <= trangCuoi; i++)
             {
                 cboTrang.Items.Add(i);
             }
             cboTrang.SelectedIndex = 0;
             UpdateDataGridView();
+            isFirstTimes = false;
+        }
+        
+        private void dataGridViewSinhVien_RowHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            try
+            {
+                string mssv = dataGridViewSinhVien.SelectedRows[0].Cells[1].Value.ToString();
+                string hoTen = dataGridViewSinhVien.SelectedRows[0].Cells[2].Value.ToString();
+                string key = dataGridViewSinhVien.SelectedRows[0].Cells[3].Value.ToString();
+
+                LoadAnhSinhVien(mssv);
+                txtHoTen.Text = hoTen;
+                ShowThongTinSinhVien(key);
+            }
+            catch { }
+        }
+        
+        private void linkChiTiet_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            try
+            {
+                string key = dataGridViewSinhVien.SelectedRows[0].Cells[3].Value.ToString();
+                string urlXemDiem = "http://student.nctu.edu.vn/XemDiem.aspx?k=" + key;
+                Process.Start(urlXemDiem);
+            }
+            catch
+            {
+                MessageBox.Show("Không có gì để xem!!!", "Thông báo");
+            }
+        }
+        
+        private void dataGridViewSinhVien_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            dataGridViewSinhVien_RowHeaderMouseClick(sender, null);
         }
 
-        List<string> listMSSV = new List<string>();
-        List<string> listHoTen = new List<string>();
-        List<string> listKey = new List<string>();
-        async Task<bool> TimKiemThongTin()
+        private async void cboTrang_SelectedIndexChanged(object sender, EventArgs e)
         {
-            string responseText = await GetResponseText();
+            if (!isFirstTimes)
+            {
+                trangHienTai = Convert.ToInt32(cboTrang.SelectedItem);
+                await SearchData();
+                UpdateDataGridView();
+            }
+        }
 
+        private void lblTacGia_MouseClick(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Left)
+            {
+                MessageBox.Show("DH16TIN02: Nguyễn Quốc Tín, Nguyễn Ngọc Trọng Tín, Bùi Văn Khương\r\n"
+                                + "DH18TIN01: Huỳnh Trung Tín, Nguyễn Thành Trí\r\n"
+                                + "DH19TIN03: Lê Trần Hoài Bảo",
+                                "Nhóm tác giả",
+                                MessageBoxButtons.OK,
+                                MessageBoxIcon.Information);
+            }
+        }
+
+        private void txtTinhTrang_TextChanged(object sender, EventArgs e)
+        {
+            var thisTextBox = sender as TextBox;
+
+            if (thisTextBox.Text.Equals("Thôi học"))
+            {
+                thisTextBox.ForeColor = Color.Red;
+            }
+            else
+            {
+                thisTextBox.ForeColor = SystemColors.WindowText;
+            }
+            txtTinhTrang.Refresh();
+        }
+
+        #endregion
+
+        #region Functions
+        async Task<bool> SearchData()
+        {
+            string responseText = "";
+            try
+            {
+                responseText = await GetDNCSearchResultText();
+            }
+            catch
+            {
+                MessageBox.Show("Lỗi mạng, xin thử lại sau!", "Thông báo",
+                                MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
             trangCuoi = DNCRegex.GetSoTrangHienThi(responseText);
             listMSSV = DNCRegex.GetListMSSV(responseText);
             listHoTen = DNCRegex.GetListHoTen(responseText);
@@ -50,7 +146,6 @@ namespace DNC_Student
 
             if (listHoTen.Count == 0 || trangCuoi > 150)
             {
-                MessageBox.Show("Không tìm thấy thông tin", "Thông báo");
                 return false;
             }
             if (listHoTen.Count == 1)
@@ -62,25 +157,23 @@ namespace DNC_Student
             return true;
         }
 
-        void UpdateDataGridView()
+        async Task<string> GetDNCSearchResultText()
         {
-            dataGridViewSinhVien.Rows.Clear();
-            for (int i = 0; i < listHoTen.Count; i++)
-            {
-                dataGridViewSinhVien.Rows.Add(i + 1, listMSSV[i], listHoTen[i], listKey[i]);
-            }
-        }
-        
-        //Đã sửa
-        private void dataGridViewSinhVien_RowHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
-        {
-            string mssv = dataGridViewSinhVien.SelectedRows[0].Cells[1].Value.ToString();
-            string hoTen = dataGridViewSinhVien.SelectedRows[0].Cells[2].Value.ToString();
-            string key = dataGridViewSinhVien.SelectedRows[0].Cells[3].Value.ToString();
+            HttpClient client = new HttpClient();
+            client.DefaultRequestHeaders.Add("user-agent", "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/81.0.4044.122 Safari/537.36");
+            client.DefaultRequestHeaders.Add("X-AjaxPro-Method", "GetDanhSachSinhVien");
 
-            LoadAnhSinhVien(mssv);
-            txtHoTen.Text = hoTen;
-            ShowThongTinSinhVien(key);
+            StringContent data = new StringContent("{\"currentPage\":" + trangHienTai
+                                                    + ",\"maSinhVien\":\"" + txtMSSV_Input.Text
+                                                    + "\",\"hoDem\":\"\",\"Ten\":\"" + txtTenSinhVien_Input.Text
+                                                    + "\",\"ngaySinh\":\"\",\"maLopHoc\":\"" + txtMaLop_Input.Text
+                                                    + "\"}");
+
+            string link = "http://student.nctu.edu.vn/ajaxpro/TraCuuThongTin,PMT.Web.PhongDaoTao.ashx";
+            HttpResponseMessage response = await client.PostAsync(link, data);
+
+            string text = await response.Content.ReadAsStringAsync();
+            return text;
         }
 
         async void ShowThongTinSinhVien(string key)
@@ -90,61 +183,37 @@ namespace DNC_Student
             client.DefaultRequestHeaders.Add("user-agent", "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/81.0.4044.122 Safari/537.36");
             HttpResponseMessage response = await client.GetAsync(urlXemDiem);
 
-            string ketQuaXemDiem = await response.Content.ReadAsStringAsync();
-            txtSoTinChi.Text = DNCRegex.GetSoTinChi(ketQuaXemDiem);
-            txtSoTinChiNo.Text = DNCRegex.GetSoTinChiNo(ketQuaXemDiem);
-            txtTichLuy.Text = DNCRegex.GetTrungBinhTichLuy(ketQuaXemDiem);
-            txtNganhHoc.Text = DNCRegex.GetNganhHoc(ketQuaXemDiem);
-            txtTinhTrang.Text = DNCRegex.GetTinhTrang(ketQuaXemDiem);
-            txtLop.Text = DNCRegex.GetLop(ketQuaXemDiem);
-
-            txtKetQua.Text = ketQuaXemDiem;
+            string chiTietSinhVien = await response.Content.ReadAsStringAsync();
+            txtSoTinChi.Text = DNCRegex.GetSoTinChi(chiTietSinhVien);
+            txtSoTinChiNo.Text = DNCRegex.GetSoTinChiNo(chiTietSinhVien);
+            txtTichLuy.Text = DNCRegex.GetTrungBinhTichLuy(chiTietSinhVien);
+            txtNganhHoc.Text = DNCRegex.GetNganhHoc(chiTietSinhVien);
+            txtTinhTrang.Text = DNCRegex.GetTinhTrang(chiTietSinhVien);
+            txtLop.Text = DNCRegex.GetLop(chiTietSinhVien);
         }
-
-        async Task<string> GetResponseText()
+        
+        void UpdateDataGridView()
         {
-            HttpClient client = new HttpClient();
-
-            client.DefaultRequestHeaders.Add("user-agent", "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/81.0.4044.122 Safari/537.36");
-            client.DefaultRequestHeaders.Add("X-AjaxPro-Method", "GetDanhSachSinhVien");
-
-            StringContent data = new StringContent("{\"currentPage\":" + trangHienTai + ",\"maSinhVien\":\"" + txtMSSV.Text 
-                                                    + "\",\"hoDem\":\"\",\"Ten\":\"" + txtTenSinhVien.Text 
-                                                    + "\",\"ngaySinh\":\"\",\"maLopHoc\":\"" 
-                                                    + txtMaLop.Text + "\"}");
-
-            string link = "http://student.nctu.edu.vn/ajaxpro/TraCuuThongTin,PMT.Web.PhongDaoTao.ashx";
-            HttpResponseMessage response = await client.PostAsync(link, data);
-
-            string text = await response.Content.ReadAsStringAsync();
-            return text;
+            dataGridViewSinhVien.Rows.Clear();
+            for (int i = 0; i < listHoTen.Count; i++)
+            {
+                dataGridViewSinhVien.Rows.Add((20 * (trangHienTai - 1)) + i + 1, 
+                                    listMSSV[i], listHoTen[i], listKey[i]);
+            }
+            dataGridViewSinhVien.ClearSelection();
         }
 
-        private void linkChiTiet_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
-        {
-            //Đã sửa
-            string key = dataGridViewSinhVien.SelectedRows[0].Cells[3].Value.ToString();
-            string urlXemDiem = "http://student.nctu.edu.vn/XemDiem.aspx?k=" + key;
-            Process.Start(urlXemDiem);
-        }
-
-        //Đã sửa
         void LoadAnhSinhVien(string mssv)
         {
             picSinhVien.LoadAsync("http://student.nctu.edu.vn/GetImage.aspx?MSSV=" + mssv);
         }
 
-        private void dataGridViewSinhVien_CellClick(object sender, DataGridViewCellEventArgs e)
+        bool InputDataIsEmpty()
         {
-            dataGridViewSinhVien_RowHeaderMouseClick(null, null);
+            return String.IsNullOrWhiteSpace(txtMSSV_Input.Text)
+                && String.IsNullOrWhiteSpace(txtMaLop_Input.Text)
+                && String.IsNullOrWhiteSpace(txtTenSinhVien_Input.Text);
         }
-
-        private async void cboTrang_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            trangHienTai = Convert.ToInt32(cboTrang.SelectedItem);
-            MessageBox.Show(trangHienTai.ToString());
-            await TimKiemThongTin();
-            UpdateDataGridView();
-        }
+        #endregion
     }
 }
