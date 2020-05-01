@@ -33,7 +33,6 @@ namespace DNC_Student
                 cboTrang.Items.Add(i);
             }
             cboTrang.SelectedIndex = 0;
-
             UpdateDataGridView();
         }
 
