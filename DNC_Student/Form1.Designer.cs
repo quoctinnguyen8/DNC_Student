@@ -83,7 +83,7 @@
             this.btnTruyCap.TabIndex = 3;
             this.btnTruyCap.Text = "Tra cứu";
             this.btnTruyCap.UseVisualStyleBackColor = true;
-            this.btnTruyCap.Click += new System.EventHandler(this.btnTruyCap_Click);
+            this.btnTruyCap.Click += new System.EventHandler(this.btnTraCuu_Click);
             // 
             // label1
             // 
@@ -413,6 +413,8 @@
             this.Controls.Add(this.cboTrang);
             this.Controls.Add(this.dataGridViewSinhVien);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.MaximumSize = new System.Drawing.Size(768, 636);
+            this.MinimumSize = new System.Drawing.Size(768, 636);
             this.Name = "Form1";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Xem điểm sinh viên DNC";

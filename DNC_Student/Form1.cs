@@ -31,10 +31,11 @@ namespace DNC_Student
         }
 
         #region Events
-        private async void btnTruyCap_Click(object sender, EventArgs e)
+        private async void btnTraCuu_Click(object sender, EventArgs e)
         {
             isFirstTimes = true;
-            cboTrang.Items.Clear();
+            trangHienTai = 1;
+            ClearComboBoxAndGridView();
             if (InputDataIsEmpty() || !await SearchData())
             {
                 MessageBox.Show("Không tìm thấy thông tin", "Thông báo",
@@ -213,6 +214,13 @@ namespace DNC_Student
             return String.IsNullOrWhiteSpace(txtMSSV_Input.Text)
                 && String.IsNullOrWhiteSpace(txtMaLop_Input.Text)
                 && String.IsNullOrWhiteSpace(txtTenSinhVien_Input.Text);
+        }
+
+        void ClearComboBoxAndGridView()
+        {
+            cboTrang.Text = "";
+            cboTrang.Items.Clear();
+            dataGridViewSinhVien.Rows.Clear();
         }
         #endregion
     }
