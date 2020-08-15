@@ -2951,15 +2951,15 @@
         {
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:DNC Student Crawler"
-        "ProductCode" = "8:{CC5B3D54-E527-4C40-8448-0B8A9E81DA25}"
-        "PackageCode" = "8:{D73E99E5-6B17-4D42-8219-B1281A5E3464}"
+        "ProductCode" = "8:{2F2E8BBC-F19C-4E57-8A2F-46346DEED363}"
+        "PackageCode" = "8:{BAD36F2B-3FDE-4EEC-8894-8B9E684B910A}"
         "UpgradeCode" = "8:{1634C89F-F729-46CA-9D01-BD9224998887}"
         "AspNetVersion" = "8:4.0.30319.0"
         "RestartWWWService" = "11:FALSE"
         "RemovePreviousVersions" = "11:TRUE"
         "DetectNewerInstalledVersion" = "11:TRUE"
         "InstallAllUsers" = "11:FALSE"
-        "ProductVersion" = "8:1.2.0"
+        "ProductVersion" = "8:1.2.1"
         "Manufacturer" = "8:NQT"
         "ARPHELPTELEPHONE" = "8:"
         "ARPHELPLINK" = "8:"
@@ -3501,7 +3501,7 @@
         {
             "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_17996183579A41068ECAA5E367F6BA0E"
             {
-            "SourcePath" = "8:..\\DNC_Student\\obj\\Release\\DNC_Student.exe"
+            "SourcePath" = "8:..\\DNC_Student\\obj\\Debug\\DNC_Student.exe"
             "TargetName" = "8:"
             "Tag" = "8:"
             "Folder" = "8:_38EE99A532AE4E6A9B8343C5823D8F36"

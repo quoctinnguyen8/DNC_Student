@@ -80,4 +80,3 @@ E:\C# Code\DNC_Student\DNC_Student\obj\Release\DNC_Student.csproj.CoreCompileInp
 E:\C# Code\DNC_Student\DNC_Student\obj\Release\DNC_Student.csproj.CopyComplete
 E:\C# Code\DNC_Student\DNC_Student\obj\Release\DNC_Student.exe
 E:\C# Code\DNC_Student\DNC_Student\obj\Release\DNC_Student.pdb
-E:\C# Code\DNC_Student\DNC_Student\obj\Release\DNC_Student.csprojAssemblyReference.cache
