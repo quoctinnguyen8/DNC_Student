@@ -18,8 +18,8 @@ namespace DNC_Student
 {
     public partial class FromDNC : RadForm
     {
-        int trangHienTai;
-        int trangCuoi;
+        int currentPage;
+        int lastPage;
         bool isFirstTimes;
         List<string> listMSSV = new List<string>();
         List<string> listHoTen = new List<string>();
@@ -28,16 +28,17 @@ namespace DNC_Student
         public FromDNC()
         {
             InitializeComponent();
-            trangHienTai = 1;
+            currentPage = 1;
             isFirstTimes = false;
             SetFormInCenter();
+            RadMessageBox.SetThemeName(this.ThemeName);
         }
 
         #region Events
         private async void btnTraCuu_Click(object sender, EventArgs e)
         {
             isFirstTimes = true;
-            trangHienTai = 1;
+            currentPage = 1;
             ClearComboBoxAndGridView();
             if (InputDataIsEmpty() || !await SearchData())
             {
@@ -46,11 +47,11 @@ namespace DNC_Student
                 return;
             }
             
-            for (int i = 1; i <= trangCuoi; i++)
+            for (int i = 1; i <= lastPage; i++)
             {
-                cboTrang.Items.Add(i.ToString());
+                cboPages.Items.Add(i.ToString());
             }
-            cboTrang.SelectedIndex = 0;
+            cboPages.SelectedIndex = 0;
             UpdateDataGridView();
             isFirstTimes = false;
         }
@@ -70,28 +71,6 @@ namespace DNC_Student
             catch { }
         }
         
-        private void linkChiTiet_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
-        {
-            try
-            {
-                string key;
-                if (dataGridViewSinhVien.RowCount == 1)
-                {
-                    key = dataGridViewSinhVien.Rows[0].Cells[3].Value.ToString();
-                }
-                else
-                {
-                    key = dataGridViewSinhVien.SelectedRows[0].Cells[3].Value.ToString();
-                }
-                string urlXemDiem = "http://student.nctu.edu.vn/XemDiem.aspx?k=" + key;
-                Process.Start(urlXemDiem);
-            }
-            catch
-            {
-                RadMessageBox.Show("Không có gì để xem!!!", "Thông báo");
-            }
-        }
-        
         private void dataGridViewSinhVien_CellClick(object sender, GridViewCellEventArgs e)
         {
             dataGridViewSinhVien_RowHeaderMouseClick(sender, null);
@@ -101,7 +80,7 @@ namespace DNC_Student
         {
             if (!isFirstTimes)
             {
-                trangHienTai = Convert.ToInt32(cboTrang.SelectedText);
+                currentPage = Convert.ToInt32(cboPages.SelectedText);
                 await SearchData();
                 UpdateDataGridView();
             }
@@ -111,7 +90,6 @@ namespace DNC_Student
         {
             if (e.Button == MouseButtons.Left)
             {
-                RadMessageBox.SetThemeName(this.ThemeName);
                 RadMessageBox.Show("DH16TIN02: Nguyễn Quốc Tín, Nguyễn Ngọc Trọng Tín, Bùi Văn Khương\r\n"
                                 + "DH18TIN01: Huỳnh Trung Tín, Nguyễn Thành Trí\r\n"
                                 + "DH19TIN03: Lê Trần Hoài Bảo",
@@ -136,6 +114,24 @@ namespace DNC_Student
             txtTinhTrang.Refresh();
         }
 
+        private void FromDNC_KeyUp(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Escape)
+            {
+                Application.Exit();
+            }
+        }
+
+        private void linkChiTiet_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            OpenBrowserWithURL("http://student.nctu.edu.vn/XemDiem.aspx?k=");
+        }
+
+        private void linkLichHoc_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            OpenBrowserWithURL("http://student.nctu.edu.vn/XemLichHoc.aspx?k=");
+        }
+
         #endregion
 
         #region Functions
@@ -152,12 +148,12 @@ namespace DNC_Student
                                 MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return false;
             }
-            trangCuoi = DNCRegex.GetSoTrangHienThi(responseText);
+            lastPage = DNCRegex.GetSoTrangHienThi(responseText);
             listMSSV = DNCRegex.GetListMSSV(responseText);
             listHoTen = DNCRegex.GetListHoTen(responseText);
             listKey = DNCRegex.GetListKey(responseText);
 
-            if (listHoTen.Count == 0 || trangCuoi > 150)
+            if (listHoTen.Count == 0 || lastPage > 150)
             {
                 return false;
             }
@@ -176,7 +172,7 @@ namespace DNC_Student
             client.DefaultRequestHeaders.Add("user-agent", "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/81.0.4044.122 Safari/537.36");
             client.DefaultRequestHeaders.Add("X-AjaxPro-Method", "GetDanhSachSinhVien");
 
-            StringContent data = new StringContent("{\"currentPage\":" + trangHienTai
+            StringContent data = new StringContent("{\"currentPage\":" + currentPage
                                                     + ",\"maSinhVien\":\"" + txtMSSV_Input.Text
                                                     + "\",\"hoDem\":\"\",\"Ten\":\"" + txtTenSinhVien_Input.Text
                                                     + "\",\"ngaySinh\":\"\",\"maLopHoc\":\"" + txtMaLop_Input.Text
@@ -210,7 +206,7 @@ namespace DNC_Student
             dataGridViewSinhVien.Rows.Clear();
             for (int i = 0; i < listHoTen.Count; i++)
             {
-                dataGridViewSinhVien.Rows.Add((20 * (trangHienTai - 1)) + i + 1, 
+                dataGridViewSinhVien.Rows.Add((20 * (currentPage - 1)) + i + 1, 
                                     listMSSV[i], listHoTen[i], listKey[i]);
             }
             dataGridViewSinhVien.ClearSelection();
@@ -230,8 +226,8 @@ namespace DNC_Student
 
         void ClearComboBoxAndGridView()
         {
-            cboTrang.Text = "";
-            cboTrang.Items.Clear();
+            cboPages.Text = "";
+            cboPages.Items.Clear();
             dataGridViewSinhVien.Rows.Clear();
         }
 
@@ -243,6 +239,29 @@ namespace DNC_Student
             int centerY = screenH / 2 - this.Height / 2;
             this.Location = new Point(centerX-80, centerY-50);
         }
+
+        void OpenBrowserWithURL(string url)
+        {
+            try
+            {
+                string key;
+                if (dataGridViewSinhVien.RowCount == 1)
+                {
+                    key = dataGridViewSinhVien.Rows[0].Cells[3].Value.ToString();
+                }
+                else
+                {
+                    key = dataGridViewSinhVien.SelectedRows[0].Cells[3].Value.ToString();
+                }
+                url += key;
+                Process.Start(url);
+            }
+            catch
+            {
+                RadMessageBox.Show("Không có gì để xem!!!", "Thông báo");
+            }
+        }
+
         #endregion
     }
 }

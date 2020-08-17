@@ -60,10 +60,11 @@ namespace DNC_Student
             this.dataGridViewSinhVien = new Telerik.WinControls.UI.RadGridView();
             this.label2 = new System.Windows.Forms.Label();
             this.txtTenSinhVien_Input = new Telerik.WinControls.UI.RadTextBox();
-            this.cboTrang = new Telerik.WinControls.UI.RadDropDownList();
+            this.cboPages = new Telerik.WinControls.UI.RadDropDownList();
             this.label11 = new System.Windows.Forms.Label();
             this.groupBox2 = new Telerik.WinControls.UI.RadGroupBox();
             this.groupBox3 = new Telerik.WinControls.UI.RadGroupBox();
+            this.linkLichHoc = new System.Windows.Forms.LinkLabel();
             this.lblTacGia = new System.Windows.Forms.Label();
             this.crystalTheme1 = new Telerik.WinControls.Themes.CrystalTheme();
             ((System.ComponentModel.ISupportInitialize)(this.txtMSSV_Input)).BeginInit();
@@ -80,7 +81,7 @@ namespace DNC_Student
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewSinhVien)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewSinhVien.MasterTemplate)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtTenSinhVien_Input)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.cboTrang)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cboPages)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.groupBox2)).BeginInit();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.groupBox3)).BeginInit();
@@ -92,7 +93,7 @@ namespace DNC_Student
             // 
             this.txtMSSV_Input.Location = new System.Drawing.Point(6, 52);
             this.txtMSSV_Input.Name = "txtMSSV_Input";
-            this.txtMSSV_Input.Size = new System.Drawing.Size(190, 27);
+            this.txtMSSV_Input.Size = new System.Drawing.Size(190, 26);
             this.txtMSSV_Input.TabIndex = 0;
             this.txtMSSV_Input.ThemeName = "Crystal";
             // 
@@ -121,7 +122,7 @@ namespace DNC_Student
             this.txtHoTen.Location = new System.Drawing.Point(162, 52);
             this.txtHoTen.Name = "txtHoTen";
             this.txtHoTen.ReadOnly = true;
-            this.txtHoTen.Size = new System.Drawing.Size(155, 27);
+            this.txtHoTen.Size = new System.Drawing.Size(155, 26);
             this.txtHoTen.TabIndex = 14;
             this.txtHoTen.TabStop = false;
             this.txtHoTen.ThemeName = "Crystal";
@@ -160,7 +161,7 @@ namespace DNC_Student
             this.txtSoTinChi.Location = new System.Drawing.Point(328, 52);
             this.txtSoTinChi.Name = "txtSoTinChi";
             this.txtSoTinChi.ReadOnly = true;
-            this.txtSoTinChi.Size = new System.Drawing.Size(155, 27);
+            this.txtSoTinChi.Size = new System.Drawing.Size(155, 26);
             this.txtSoTinChi.TabIndex = 10;
             this.txtSoTinChi.TabStop = false;
             this.txtSoTinChi.ThemeName = "Crystal";
@@ -180,7 +181,7 @@ namespace DNC_Student
             this.txtSoTinChiNo.Location = new System.Drawing.Point(328, 106);
             this.txtSoTinChiNo.Name = "txtSoTinChiNo";
             this.txtSoTinChiNo.ReadOnly = true;
-            this.txtSoTinChiNo.Size = new System.Drawing.Size(155, 27);
+            this.txtSoTinChiNo.Size = new System.Drawing.Size(155, 26);
             this.txtSoTinChiNo.TabIndex = 9;
             this.txtSoTinChiNo.TabStop = false;
             this.txtSoTinChiNo.ThemeName = "Crystal";
@@ -200,7 +201,7 @@ namespace DNC_Student
             this.txtTichLuy.Location = new System.Drawing.Point(328, 156);
             this.txtTichLuy.Name = "txtTichLuy";
             this.txtTichLuy.ReadOnly = true;
-            this.txtTichLuy.Size = new System.Drawing.Size(155, 27);
+            this.txtTichLuy.Size = new System.Drawing.Size(155, 26);
             this.txtTichLuy.TabIndex = 8;
             this.txtTichLuy.TabStop = false;
             this.txtTichLuy.ThemeName = "Crystal";
@@ -221,7 +222,7 @@ namespace DNC_Student
             this.txtTinhTrang.Location = new System.Drawing.Point(162, 106);
             this.txtTinhTrang.Name = "txtTinhTrang";
             this.txtTinhTrang.ReadOnly = true;
-            this.txtTinhTrang.Size = new System.Drawing.Size(155, 27);
+            this.txtTinhTrang.Size = new System.Drawing.Size(155, 26);
             this.txtTinhTrang.TabIndex = 13;
             this.txtTinhTrang.TabStop = false;
             this.txtTinhTrang.ThemeName = "Crystal";
@@ -242,7 +243,7 @@ namespace DNC_Student
             this.txtLop.Location = new System.Drawing.Point(162, 156);
             this.txtLop.Name = "txtLop";
             this.txtLop.ReadOnly = true;
-            this.txtLop.Size = new System.Drawing.Size(155, 27);
+            this.txtLop.Size = new System.Drawing.Size(155, 26);
             this.txtLop.TabIndex = 12;
             this.txtLop.TabStop = false;
             this.txtLop.ThemeName = "Crystal";
@@ -262,7 +263,7 @@ namespace DNC_Student
             this.txtNganhHoc.Location = new System.Drawing.Point(162, 204);
             this.txtNganhHoc.Name = "txtNganhHoc";
             this.txtNganhHoc.ReadOnly = true;
-            this.txtNganhHoc.Size = new System.Drawing.Size(155, 27);
+            this.txtNganhHoc.Size = new System.Drawing.Size(155, 26);
             this.txtNganhHoc.TabIndex = 11;
             this.txtNganhHoc.TabStop = false;
             this.txtNganhHoc.ThemeName = "Crystal";
@@ -272,10 +273,10 @@ namespace DNC_Student
             this.linkChiTiet.AutoSize = true;
             this.linkChiTiet.Location = new System.Drawing.Point(330, 207);
             this.linkChiTiet.Name = "linkChiTiet";
-            this.linkChiTiet.Size = new System.Drawing.Size(92, 19);
+            this.linkChiTiet.Size = new System.Drawing.Size(58, 19);
             this.linkChiTiet.TabIndex = 7;
             this.linkChiTiet.TabStop = true;
-            this.linkChiTiet.Text = "Xem chi tiết";
+            this.linkChiTiet.Text = "Chi tiết";
             this.linkChiTiet.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkChiTiet_LinkClicked);
             // 
             // label10
@@ -292,7 +293,7 @@ namespace DNC_Student
             this.txtMaLop_Input.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txtMaLop_Input.Location = new System.Drawing.Point(5, 104);
             this.txtMaLop_Input.Name = "txtMaLop_Input";
-            this.txtMaLop_Input.Size = new System.Drawing.Size(189, 27);
+            this.txtMaLop_Input.Size = new System.Drawing.Size(189, 26);
             this.txtMaLop_Input.TabIndex = 1;
             this.txtMaLop_Input.ThemeName = "Crystal";
             // 
@@ -358,20 +359,20 @@ namespace DNC_Student
             this.txtTenSinhVien_Input.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txtTenSinhVien_Input.Location = new System.Drawing.Point(5, 156);
             this.txtTenSinhVien_Input.Name = "txtTenSinhVien_Input";
-            this.txtTenSinhVien_Input.Size = new System.Drawing.Size(190, 27);
+            this.txtTenSinhVien_Input.Size = new System.Drawing.Size(190, 26);
             this.txtTenSinhVien_Input.TabIndex = 2;
             this.txtTenSinhVien_Input.ThemeName = "Crystal";
             // 
             // cboTrang
             // 
-            this.cboTrang.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.cboTrang.Location = new System.Drawing.Point(651, 275);
-            this.cboTrang.MaxDropDownItems = 6;
-            this.cboTrang.Name = "cboTrang";
-            this.cboTrang.Size = new System.Drawing.Size(87, 27);
-            this.cboTrang.TabIndex = 5;
-            this.cboTrang.ThemeName = "Crystal";
-            this.cboTrang.SelectedIndexChanged += new Telerik.WinControls.UI.Data.PositionChangedEventHandler(this.cboTrang_SelectedIndexChanged);
+            this.cboPages.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.cboPages.Location = new System.Drawing.Point(651, 275);
+            this.cboPages.MaxDropDownItems = 6;
+            this.cboPages.Name = "cboTrang";
+            this.cboPages.Size = new System.Drawing.Size(87, 26);
+            this.cboPages.TabIndex = 5;
+            this.cboPages.ThemeName = "Crystal";
+            this.cboPages.SelectedIndexChanged += new Telerik.WinControls.UI.Data.PositionChangedEventHandler(this.cboTrang_SelectedIndexChanged);
             // 
             // label11
             // 
@@ -411,6 +412,7 @@ namespace DNC_Student
             this.groupBox3.Controls.Add(this.label1);
             this.groupBox3.Controls.Add(this.label4);
             this.groupBox3.Controls.Add(this.txtSoTinChi);
+            this.groupBox3.Controls.Add(this.linkLichHoc);
             this.groupBox3.Controls.Add(this.linkChiTiet);
             this.groupBox3.Controls.Add(this.label5);
             this.groupBox3.Controls.Add(this.txtNganhHoc);
@@ -432,6 +434,17 @@ namespace DNC_Student
             this.groupBox3.Text = "Thông tin chi tiết";
             this.groupBox3.ThemeName = "Crystal";
             // 
+            // linkLichHoc
+            // 
+            this.linkLichHoc.AutoSize = true;
+            this.linkLichHoc.Location = new System.Drawing.Point(405, 207);
+            this.linkLichHoc.Name = "linkLichHoc";
+            this.linkLichHoc.Size = new System.Drawing.Size(69, 19);
+            this.linkLichHoc.TabIndex = 8;
+            this.linkLichHoc.TabStop = true;
+            this.linkLichHoc.Text = "Lịch học";
+            this.linkLichHoc.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLichHoc_LinkClicked);
+            // 
             // lblTacGia
             // 
             this.lblTacGia.AutoSize = true;
@@ -447,16 +460,17 @@ namespace DNC_Student
             // FromDNC
             // 
             this.AcceptButton = this.btnTruyCap;
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(749, 576);
             this.Controls.Add(this.lblTacGia);
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.label11);
-            this.Controls.Add(this.cboTrang);
+            this.Controls.Add(this.cboPages);
             this.Controls.Add(this.dataGridViewSinhVien);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.KeyPreview = true;
             this.Name = "FromDNC";
             // 
             // 
@@ -466,6 +480,7 @@ namespace DNC_Student
             this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
             this.Text = "Xem điểm sinh viên DNC";
             this.ThemeName = "Crystal";
+            this.KeyUp += new System.Windows.Forms.KeyEventHandler(this.FromDNC_KeyUp);
             ((System.ComponentModel.ISupportInitialize)(this.txtMSSV_Input)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnTruyCap)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtHoTen)).EndInit();
@@ -480,7 +495,7 @@ namespace DNC_Student
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewSinhVien.MasterTemplate)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewSinhVien)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtTenSinhVien_Input)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.cboTrang)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cboPages)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.groupBox2)).EndInit();
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
@@ -519,12 +534,13 @@ namespace DNC_Student
         private RadGridView dataGridViewSinhVien;
         private System.Windows.Forms.Label label2;
         private RadTextBox txtTenSinhVien_Input;
-        private RadDropDownList cboTrang;
+        private RadDropDownList cboPages;
         private System.Windows.Forms.Label label11;
         private RadGroupBox groupBox2;
         private RadGroupBox groupBox3;
         private System.Windows.Forms.Label lblTacGia;
         private Telerik.WinControls.Themes.CrystalTheme crystalTheme1;
+        private System.Windows.Forms.LinkLabel linkLichHoc;
     }
 }
 
