@@ -20,7 +20,7 @@ namespace DNC_Student
     {
         int currentPage;
         int lastPage;
-        bool isFirstTimes;
+        bool isFirstTime;
         List<string> listMSSV = new List<string>();
         List<string> listHoTen = new List<string>();
         List<string> listKey = new List<string>();
@@ -29,15 +29,15 @@ namespace DNC_Student
         {
             InitializeComponent();
             currentPage = 1;
-            isFirstTimes = false;
+            isFirstTime = false;
             SetFormInCenter();
             RadMessageBox.SetThemeName(this.ThemeName);
         }
 
         #region Events
-        private async void btnTraCuu_Click(object sender, EventArgs e)
+        private async void btnSearch_Click(object sender, EventArgs e)
         {
-            isFirstTimes = true;
+            isFirstTime = true;
             currentPage = 1;
             ClearComboBoxAndGridView();
             if (InputDataIsEmpty() || !await SearchData())
@@ -53,7 +53,7 @@ namespace DNC_Student
             }
             cboPages.SelectedIndex = 0;
             UpdateDataGridView();
-            isFirstTimes = false;
+            isFirstTime = false;
         }
         
         private void dataGridViewSinhVien_RowHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
@@ -78,7 +78,7 @@ namespace DNC_Student
 
         private async void cboTrang_SelectedIndexChanged(object sender, Telerik.WinControls.UI.Data.PositionChangedEventArgs e)
         {
-            if (!isFirstTimes)
+            if (!isFirstTime)
             {
                 currentPage = Convert.ToInt32(cboPages.SelectedText);
                 await SearchData();

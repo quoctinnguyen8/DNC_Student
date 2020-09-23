@@ -37,7 +37,7 @@ namespace DNC_Student
             Telerik.WinControls.UI.TableViewDefinition tableViewDefinition1 = new Telerik.WinControls.UI.TableViewDefinition();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FromDNC));
             this.txtMSSV_Input = new Telerik.WinControls.UI.RadTextBox();
-            this.btnTruyCap = new Telerik.WinControls.UI.RadButton();
+            this.btnSearch = new Telerik.WinControls.UI.RadButton();
             this.label1 = new System.Windows.Forms.Label();
             this.txtHoTen = new Telerik.WinControls.UI.RadTextBox();
             this.label3 = new System.Windows.Forms.Label();
@@ -68,7 +68,7 @@ namespace DNC_Student
             this.lblTacGia = new System.Windows.Forms.Label();
             this.crystalTheme1 = new Telerik.WinControls.Themes.CrystalTheme();
             ((System.ComponentModel.ISupportInitialize)(this.txtMSSV_Input)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.btnTruyCap)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnSearch)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtHoTen)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picSinhVien)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtSoTinChi)).BeginInit();
@@ -97,15 +97,15 @@ namespace DNC_Student
             this.txtMSSV_Input.TabIndex = 0;
             this.txtMSSV_Input.ThemeName = "Crystal";
             // 
-            // btnTruyCap
+            // btnSearch
             // 
-            this.btnTruyCap.Location = new System.Drawing.Point(6, 191);
-            this.btnTruyCap.Name = "btnTruyCap";
-            this.btnTruyCap.Size = new System.Drawing.Size(189, 45);
-            this.btnTruyCap.TabIndex = 3;
-            this.btnTruyCap.Text = "Tra cứu";
-            this.btnTruyCap.ThemeName = "Crystal";
-            this.btnTruyCap.Click += new System.EventHandler(this.btnTraCuu_Click);
+            this.btnSearch.Location = new System.Drawing.Point(6, 191);
+            this.btnSearch.Name = "btnSearch";
+            this.btnSearch.Size = new System.Drawing.Size(189, 45);
+            this.btnSearch.TabIndex = 3;
+            this.btnSearch.Text = "Tra cứu";
+            this.btnSearch.ThemeName = "Crystal";
+            this.btnSearch.Click += new System.EventHandler(this.btnSearch_Click);
             // 
             // label1
             // 
@@ -363,12 +363,12 @@ namespace DNC_Student
             this.txtTenSinhVien_Input.TabIndex = 2;
             this.txtTenSinhVien_Input.ThemeName = "Crystal";
             // 
-            // cboTrang
+            // cboPages
             // 
             this.cboPages.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.cboPages.Location = new System.Drawing.Point(651, 275);
             this.cboPages.MaxDropDownItems = 6;
-            this.cboPages.Name = "cboTrang";
+            this.cboPages.Name = "cboPages";
             this.cboPages.Size = new System.Drawing.Size(87, 26);
             this.cboPages.TabIndex = 5;
             this.cboPages.ThemeName = "Crystal";
@@ -389,7 +389,7 @@ namespace DNC_Student
             this.groupBox2.AccessibleRole = System.Windows.Forms.AccessibleRole.Grouping;
             this.groupBox2.Controls.Add(this.txtMaLop_Input);
             this.groupBox2.Controls.Add(this.txtMSSV_Input);
-            this.groupBox2.Controls.Add(this.btnTruyCap);
+            this.groupBox2.Controls.Add(this.btnSearch);
             this.groupBox2.Controls.Add(this.txtTenSinhVien_Input);
             this.groupBox2.Controls.Add(this.label3);
             this.groupBox2.Controls.Add(this.label2);
@@ -459,7 +459,7 @@ namespace DNC_Student
             // 
             // FromDNC
             // 
-            this.AcceptButton = this.btnTruyCap;
+            this.AcceptButton = this.btnSearch;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(749, 576);
@@ -482,7 +482,7 @@ namespace DNC_Student
             this.ThemeName = "Crystal";
             this.KeyUp += new System.Windows.Forms.KeyEventHandler(this.FromDNC_KeyUp);
             ((System.ComponentModel.ISupportInitialize)(this.txtMSSV_Input)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.btnTruyCap)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnSearch)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtHoTen)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.picSinhVien)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtSoTinChi)).EndInit();
@@ -511,7 +511,7 @@ namespace DNC_Student
         #endregion
 
         private RadTextBox txtMSSV_Input;
-        private RadButton btnTruyCap;
+        private RadButton btnSearch;
         private System.Windows.Forms.Label label1;
         private RadTextBox txtHoTen;
         private System.Windows.Forms.Label label3;

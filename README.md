@@ -8,3 +8,6 @@
 <p>1: DH16TIN02 - DNC</p>
 <p>2: DH18TIN01 - DNC</p>
 <p>3: DH19TIN03 - DNC</p>
+<br />
+<h2>Ảnh chụp màn hình</h2>
+<img src="Screenshot.png">
